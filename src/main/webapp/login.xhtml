@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/login_register.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <h1>Login</h1>
+        <h:form id="loginForm">
+            <div class="form-group">
+                <h:outputLabel for="username" value="Accountname:"/>
+                <h:inputText id="username" value="#{loginBean.username}" class="input"/>
+                <h:message for="username" class="error-message"/>
+                <h:outputText value="Der Accountname muss mindestens 3 Zeichen lang sein." class="help-text"/>
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="password" value="Passwort:"/>
+                <h:inputSecret id="password" value="#{loginBean.password}" class="input"/>
+                <h:message for="password" class="error-message"/>
+                <h:outputText value="Das Passwort muss mindestens 8 Zeichen lang sein, darunter mindestens ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen." class="help-text"/>
+            </div>
+
+            <div class="button-group">
+                <h:commandButton value="Einloggen" action="#{loginBean.login}" class="button"/>
+                <h:commandButton value="Zur Registrierung" action="register.xhtml" class="button"/>
+                <h:commandButton value="Zurück zur Startseite" action="index.xhtml" class="button"/>
+            </div>
+
+        </h:form>
+    </div>
+</h:body>
+</html>

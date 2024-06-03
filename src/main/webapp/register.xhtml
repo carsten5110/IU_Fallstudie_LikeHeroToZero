@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+  <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="css/login_register.css"/>
+</h:head>
+<h:body>
+  <div class="container">
+    <h1>Registrieren</h1>
+    <h:form id="registerForm">
+      <div class="form-group">
+        <h:outputLabel for="username" value="Accountname:"/>
+        <h:inputText id="username" value="#{registerBean.username}" class="input"/>
+        <h:message for="username" class="error-message" />
+        <h:outputText value="Der Accountname muss mindestens 3 Zeichen lang sein." class="help-text"/>
+      </div>
+
+      <div class="form-group">
+        <h:outputLabel for="email" value="Email:"/>
+        <h:inputText id="email" value="#{registerBean.email}" class="input"/>
+        <h:message for="email" class="error-message" />
+        <h:outputText value="Die E-Mail-Adresse muss ein '@'-Zeichen enthalten." class="help-text"/>
+      </div>
+
+      <div class="form-group">
+        <h:outputLabel for="password" value="Passwort:"/>
+        <h:inputSecret id="password" value="#{registerBean.password}" class="input"/>
+        <h:message for="password" class="error-message" />
+        <h:outputText value="Das Passwort muss mindestens 8 Zeichen lang sein, darunter mindestens ein Großbuchstabe, ein Kleinbuchstabe, eine Zahl und ein Sonderzeichen." class="help-text"/>
+      </div>
+
+      <div class="form-group">
+        <h:outputLabel for="confirmPassword" value="Passwort bestätigen:"/>
+        <h:inputSecret id="confirmPassword" value="#{registerBean.confirmPassword}" class="input"/>
+        <h:message for="confirmPassword" class="error-message" />
+      </div>
+
+      <h:messages id="messages" globalOnly="true" styleClass="success-message" layout="table"/>
+
+      <div class="button-group">
+        <h:commandButton value="Registrieren" action="#{registerBean.register}" class="button"/>
+        <h:commandButton value="Zurück zum Login" action="login.xhtml" class="button"/>
+      </div>
+    </h:form>
+  </div>
+</h:body>
+</html>

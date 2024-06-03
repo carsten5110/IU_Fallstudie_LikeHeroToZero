@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Like Hero To Zero</title>
+    <link rel="stylesheet" type="text/css" href="css/index_dataEntry.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Like Hero To Zero</h1>
+            <h:form class="login-form">
+                <h:commandButton value="Zum Login" action="login.xhtml" class="button"/>
+            </h:form>
+        </div>
+        <p class="description">
+            Wählen Sie hier ihr gewünschtes Land aus und klicken Sie auf Suche, um sich die aktuellsten Emissionen im Datensatz anzeigen zu lassen.
+        </p>
+        <h:form class="form">
+            <div class="form-group">
+                <h:outputLabel for="country" value="Land auswählen: " class="label"/>
+                <h:selectOneMenu id="country" value="#{emissionBean.country}" class="input">
+                    <f:selectItems value="#{emissionBean.countries}"/>
+                </h:selectOneMenu>
+            </div>
+            <div class="button-group">
+                <h:commandButton value="Suche" action="#{emissionBean.search}" class="button"/>
+            </div>
+        </h:form>
+
+        <h:dataTable value="#{emissionBean.emissions}" var="emission" class="table">
+            <h:column>
+                <f:facet name="header">Jahr</f:facet>
+                #{emission.year}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Emissionen in Tonnen</f:facet>
+                #{emissionBean.formatEmissions(emission.emissions)}
+            </h:column>
+        </h:dataTable>
+    </div>
+</h:body>
+</html>

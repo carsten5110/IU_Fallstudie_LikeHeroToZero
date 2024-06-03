@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Datenüberprüfung</title>
+    <link rel="stylesheet" type="text/css" href="css/approval.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <h1>Ausstehende Genehmigungen</h1>
+
+        <h2>Ausstehende Emissionsdaten</h2>
+        <h:form>
+            <h:dataTable value="#{approvalBean.pendingEmissions}" var="pending" class="table">
+                <h:column>
+                    <f:facet name="header">Land</f:facet>
+                    #{pending.country}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Jahr</f:facet>
+                    #{pending.year}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Emissionen</f:facet>
+                    #{approvalBean.formatEmissions(pending.emissions)}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Aktionen</f:facet>
+                    <div class="button-group">
+                        <h:commandButton value="Genehmigen" action="#{approvalBean.approveEmission(pending)}" class="button"/>
+                        <h:commandButton value="Ablehnen" action="#{approvalBean.rejectEmission(pending)}" class="button"/>
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
+        <h2>Ausstehende Accountdaten</h2>
+        <h:form>
+            <h:dataTable value="#{approvalBean.pendingUsers}" var="user" class="table">
+                <h:column>
+                    <f:facet name="header">Accountname</f:facet>
+                    #{user.username}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{user.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Rolle</f:facet>
+                    #{user.role}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Aktionen</f:facet>
+                    <div class="button-group">
+                        <h:commandButton value="Genehmigen" action="#{approvalBean.approveUser(user)}" class="button"/>
+                        <h:commandButton value="Ablehnen" action="#{approvalBean.rejectUser(user)}" class="button"/>
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <div class="button-group">
+            <h:form>
+                <h:commandButton value="Zurück zur Dateneingabe" action="dataEntry?faces-redirect=true" class="button"/>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>
